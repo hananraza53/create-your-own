@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Privacy Policy | CardCraft</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-slate-900 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="glass sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <a href="index.html" class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">C</a>
+            <span class="text-2xl font-bold text-indigo-600 hidden sm:block">CardCraft</span>
+        </div>
+        <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+            <i class="fas fa-sun text-yellow-500" id="themeIcon"></i>
+        </button>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <div class="glass rounded-3xl p-8 md:p-12 shadow-xl">
+            <h1 class="text-4xl font-bold mb-8 text-center">Privacy Policy</h1>
+            
+            <div class="space-y-8 text-gray-600 dark:text-gray-300">
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Information We Collect</h2>
+                    <p>We collect information that you provide directly to us when you use our design tools, such as the text and images you upload to create your cards. This includes:</p>
+                    <ul class="list-disc list-inside mt-2 ml-4">
+                        <li>Custom text content</li>
+                        <li>Design preferences and style choices</li>
+                        <li>Feedback and correspondence</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">How We Use Your Information</h2>
+                    <p>Your information is used solely to provide and improve our services, specifically to render your custom card designs for download. We do not sell your personal data to third parties.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Data Security</h2>
+                    <p>We implement professional security measures to protect your data. Your designs are processed locally in your browser whenever possible using client-side technologies.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Cookies and Analytics</h2>
+                    <p>We may use cookies to understand site usage and improve our design tools. You can manage your cookie preferences through your browser settings.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Third-Party Services</h2>
+                    <p>We use third-party libraries (like Tailwind CSS and Font Awesome) to enhance your experience. These services follow their own privacy standards and data handling practices.</p>
+                </section>
+            </div>
+
+            <div class="mt-12 text-center">
+                <a href="index.html" class="btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-auto py-8 text-center text-gray-500 border-t dark:border-slate-800">
+        <p>&copy; 2024 CardCraft Studio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            themeIcon.classList.toggle('fa-sun');
+            themeIcon.classList.toggle('fa-moon');
+        });
+    </script>
+</body>
+</html>

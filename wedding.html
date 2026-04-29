@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Wedding Card Designer | CardCraft</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-slate-900 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="glass sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <a href="index.html" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="text-xl font-bold">Wedding Card Designer</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <i class="fas fa-sun text-yellow-500"></i>
+            </button>
+            <div class="flex space-x-2">
+                <button onclick="downloadCard('png')" class="btn-primary text-sm px-4 py-2">
+                    <i class="fas fa-download mr-2"></i> PNG
+                </button>
+                <button onclick="downloadCard('jpeg')" class="btn-primary text-sm px-4 py-2">
+                    <i class="fas fa-image mr-2"></i> JPEG
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col lg:flex-row overflow-hidden">
+        <!-- Sidebar Editor -->
+        <aside class="w-full lg:w-96 glass overflow-y-auto p-6 border-r dark:border-slate-800">
+            <div class="space-y-8">
+                <!-- Content Section -->
+                <section>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">Content</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Heading</label>
+                            <input type="text" id="headingText" class="w-full p-2 border rounded-lg bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Description</label>
+                            <textarea id="descriptionText" rows="3" class="w-full p-2 border rounded-lg bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary outline-none transition"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Style Section -->
+                <section>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">Styles</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Background</label>
+                            <input type="color" id="bgColor" class="w-full h-10 p-1 border rounded-lg cursor-pointer">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Text Color</label>
+                            <input type="color" id="textColor" class="w-full h-10 p-1 border rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium mb-1">Background Image URL</label>
+                        <input type="text" id="bgImage" placeholder="https://..." class="w-full p-2 border rounded-lg bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary outline-none transition">
+                    </div>
+                </section>
+
+                <!-- Typography Section -->
+                <section>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">Typography</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Font Family</label>
+                            <select id="fontFamily" class="w-full p-2 border rounded-lg bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary outline-none transition">
+                                <option value="'Playfair Display', serif">Playfair Display</option>
+                                <option value="'Inter', sans-serif">Inter</option>
+                                <option value="'Arial', sans-serif">Arial</option>
+                                <option value="'Georgia', serif">Georgia</option>
+                                <option value="'Courier New', monospace">Courier New</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Heading Size</label>
+                                <input type="text" id="headingSize" placeholder="32px" class="w-full p-2 border rounded-lg bg-white dark:bg-slate-800 outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Body Size</label>
+                                <input type="text" id="fontSize" placeholder="16px" class="w-full p-2 border rounded-lg bg-white dark:bg-slate-800 outline-none transition">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Layout Section -->
+                <section>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">Layout</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Border Radius</label>
+                            <input type="text" id="borderRadius" placeholder="16px" class="w-full p-2 border rounded-lg bg-white dark:bg-slate-800 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Border Style</label>
+                            <input type="text" id="border" placeholder="2px solid #eee" class="w-full p-2 border rounded-lg bg-white dark:bg-slate-800 outline-none transition">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </aside>
+
+        <!-- Preview Area -->
+        <section class="flex-grow bg-pink-50 dark:bg-slate-950 p-8 flex items-center justify-center overflow-auto">
+            <div id="card-container" class="w-full max-w-2xl transform transition-transform duration-500 hover:scale-[1.02]">
+                <div id="customDiv" class="aspect-[4/5] bg-white rounded-2xl flex flex-col items-center justify-center p-12 text-center shadow-2xl relative border-8 border-double border-pink-100">
+                    <!-- Floral Decoration -->
+                    <div class="absolute top-4 left-4 text-4xl text-pink-200/50">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="absolute top-4 right-4 text-4xl text-pink-200/50">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    
+                    <h1 id="cardHeading" class="font-bold leading-tight z-10 italic">Wedding Invitation</h1>
+                    <p id="cardDescription" class="mt-6 text-lg z-10">Celebrate our special day with us!</p>
+                    
+                    <!-- Decorative Element -->
+                    <div class="mt-12 flex items-center space-x-4 z-10">
+                        <div class="w-16 h-px bg-pink-200"></div>
+                        <i class="fas fa-ring text-pink-400"></i>
+                        <div class="w-16 h-px bg-pink-200"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="editor.js"></script>
+</body>
+</html>

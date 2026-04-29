@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Wedding Card Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header Animation */
+        @keyframes headerColorChange {
+            0% { background-color: #4F46E5; }
+            25% { background-color: #6D28D9; }
+            50% { background-color: #9333EA; }
+            75% { background-color: #A855F7; }
+            100% { background-color: #4F46E5; }
+        }
+
+        header {
+            background-color: #4F46E5;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: headerColorChange 10s infinite alternate; /* Applying color change animation */
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        #customDiv {
+            max-width: 90%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        #download-btn, #btn {
+            background-color: #4F46E5;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+            max-width: 180px;
+            margin: 10px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        #download-btn:hover, #btn:hover {
+            background-color: #4338CA;
+            transform: translateY(-4px);
+        }
+
+        input, select, textarea, button {
+            font-size: 1rem;
+            padding: 12px;
+            width: 100%;
+            border-radius: 30px;
+            border: 1px solid #D1D5DB;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #4F46E5;
+        }
+
+        .input-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .input-group {
+            flex: 1 1 30%;
+        }
+
+        .input-group input, .input-group textarea {
+            min-width: 150px;
+        }
+
+        .input-group select {
+            min-width: 180px;
+        }
+
+        .dark {
+            background-color: #1F2937;
+            color: #fff;
+        }
+
+        .dark #customDiv {
+            border: 2px solid white;
+        }
+
+        .dark button {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .png, .dark .jpeg {
+            background-color: #4F46E5;
+        }
+
+        .dark textarea, .dark input, .dark select {
+            background-color: #374151;
+            color: #E5E7EB;
+        }
+
+        .light {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .light input, .light select, .light textarea {
+            background-color: #f9fafb;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation trigger when in viewport */
+        .in-view {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+    </style>
+</head>
+<body class="light">
+    <header class="bg-indigo-600 text-white py-4 flex items-center justify-between bg-opacity-90 px-4">
+        <a href="index.html"><button id="btn">Back To Home Page</button></a>
+        <div class="text-center flex-grow">
+            <h1 class="text-2xl md:text-3xl font-bold">Create Your Own Card</h1>
+            <p class="mt-2 text-sm md:text-base">Design custom wedding cards!</p>
+        </div>
+        <div class="flex items-center">
+            <button id="themeToggle" class="p-2 bg-indigo-400 rounded-full font-extrabold mt-2 w-10">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="customDiv">
+        <h1 id="cardHeading" class="text-xl md:text-2xl">Wedding <br> Card</h1>
+        <p id="cardDescription" class="mt-2 text-base md:text-lg">Join us for a <br> beautiful wedding <br> celebration!</p>
+    </div>
+
+    <!-- Format selection buttons -->
+    <div class="input-row">
+        <button onclick="downloadCard('jpeg')" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-full hover:bg-indigo-700 transition duration-300" id="download-jpeg-btn">
+            Download as JPEG
+        </button>
+        <button onclick="downloadCard('png')" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-full hover:bg-indigo-700 transition duration-300" id="download-png-btn">
+            Download as PNG
+        </button>
+    </div>
+
+    <!-- User Input Section -->
+    <div class="flex flex-col mt-4 px-4">
+        <div class="input-row">
+            <div class="input-group">
+                <input type="text" id="bgColor" placeholder="Background Color (e.g. #f0f0f0)" class="border border-black font-bold" />
+            </div>
+            <div class="input-group">
+                <input type="text" id="textColor" placeholder="Text Color (e.g. #000000)" class="border border-black font-bold" />
+            </div>
+            <div class="input-group">
+                <input type="text" id="bgImage" placeholder="Background Image URL (Only pexels supported!)" class="border border-black font-bold" />
+            </div>
+        </div>
+        <div class="input-row">
+            <button onclick="changeBackgroundColor()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change BG Color</button>
+            <button onclick="changeTextColor()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change Text Color</button>
+            <button onclick="changeBackgroundImage()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change BG Image</button>
+        </div>
+        <div class="input-row">
+            <div class="input-group">
+                <input type="text" id="border" placeholder="Border (e.g. 2px solid #000)" class="border border-black font-bold" />
+            </div>
+            <div class="input-group">
+                <input type="text" id="borderRadius" placeholder="Border Radius (e.g. 10px)" class="border border-black font-bold" />
+            </div>
+            <div class="input-group">
+                <input type="text" id="cardHeight" placeholder="Height Of Card (e.g. 300px)" class="border border-black font-bold" />
+            </div>
+        </div>
+        <div class="input-row">
+            <button onclick="changeBorder()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change Border</button>
+            <button onclick="changeBorderRadius()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change Border Radius</button>
+            <button onclick="changeCardHeight()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change Height</button>
+        </div>
+
+        <div class="input-row">
+            <div class="input-group">
+                <input type="text" id="cardWidth" placeholder="Width Of Card (e.g. 500px)" class="border border-black font-bold" />
+            </div>
+            <div class="input-group">
+                <select id="fontStyle" class="border border-black font-bold">
+                    <option value="">Select Font Style</option>
+                    <option value="normal">Normal</option>
+                    <option value="italic">Italic</option>
+                    <option value="oblique">Oblique</option>
+                    <option value="bold">Bold</option>
+                    <option value="bolder">Bolder</option>
+                    <option value="lighter">Lighter</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <select id="fontFamily" class="border border-black font-bold">
+                    <option value="">Select Font Family</option>
+                    <option value="'Arial', sans-serif">Arial</option>
+                    <option value="'Courier New', monospace">Courier New</option>
+                    <option value="'Georgia', serif">Georgia</option>
+                    <option value="'Times New Roman', serif">Times New Roman</option>
+                    <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                    <option value="'Verdana', sans-serif">Verdana</option>
+                    <option value="'Impact', sans-serif">Impact</option>
+                    <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+                    <option value="'Lucida Console', monospace">Lucida Console</option>
+                    <option value="'Tahoma', sans-serif">Tahoma</option>
+                </select>
+            </div>
+        </div>
+        <div class="input-row">
+            <button onclick="changeCardWidth()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change Width</button>
+            <button onclick="changeFontStyle()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change Font Style</button>
+            <button onclick="changeFontFamily()" class="bg-indigo-600 text-white font-medium rounded-full py-2 hover:bg-indigo-700 transition duration-300">Change Font Family</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to change background color
+        function changeBackgroundColor() {
+            const bgColor = document.getElementById('bgColor').value;
+            document.getElementById('customDiv').style.backgroundColor = bgColor;
+        }
+
+        // Function to change text color
+        function changeTextColor() {
+            const textColor = document.getElementById('textColor').value;
+            document.getElementById('cardHeading').style.color = textColor;
+            document.getElementById('cardDescription').style.color = textColor;
+        }
+
+        // Function to change background image
+        function changeBackgroundImage() {
+            const bgImage = document.getElementById('bgImage').value;
+            document.getElementById('customDiv').style.backgroundImage = `url(${bgImage})`;
+            document.getElementById('customDiv').style.backgroundSize = "cover";
+            document.getElementById('customDiv').style.backgroundPosition = "center";
+        }
+
+        // Function to change border
+        function changeBorder() {
+            const border = document.getElementById('border').value;
+            document.getElementById('customDiv').style.border = border;
+        }
+
+        // Function to change border radius
+        function changeBorderRadius() {
+            const borderRadius = document.getElementById('borderRadius').value;
+            document.getElementById('customDiv').style.borderRadius = borderRadius;
+        }
+
+        // Function to change card height
+        function changeCardHeight() {
+            const cardHeight = document.getElementById('cardHeight').value;
+            document.getElementById('customDiv').style.height = cardHeight;
+        }
+
+        // Function to change card width
+        function changeCardWidth() {
+            const cardWidth = document.getElementById('cardWidth').value;
+            document.getElementById('customDiv').style.width = cardWidth;
+        }
+
+        // Function to change font style
+        function changeFontStyle() {
+            const fontStyle = document.getElementById('fontStyle').value;
+            document.getElementById('cardHeading').style.fontStyle = fontStyle;
+            document.getElementById('cardDescription').style.fontStyle = fontStyle;
+        }
+
+        // Function to change font family
+        function changeFontFamily() {
+            const fontFamily = document.getElementById('fontFamily').value;
+            document.getElementById('cardHeading').style.fontFamily = fontFamily;
+            document.getElementById('cardDescription').style.fontFamily = fontFamily;
+        }
+
+        // Function to trigger the download
+        function downloadCard(format) {
+            html2canvas(document.getElementById('customDiv')).then(function (canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL('image/' + format);
+                link.download = 'wedding_card.' + format;
+                link.click();
+            });
+        }
+
+        // Toggle dark/light theme
+        document.getElementById('themeToggle').addEventListener('click', function () {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+            var icon = document.getElementById('themeIcon');
+            icon.classList.toggle('fa-sun');
+            icon.classList.toggle('fa-moon');
+        });
+    </script>
+</body>
+</html>

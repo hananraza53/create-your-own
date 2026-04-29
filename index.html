@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CardCraft | Design Custom Professional Cards</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#ec4899',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Animated Background -->
+    <div class="bg-slider">
+        <div class="bg-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/bg-image.jpg')"></div>
+        <div class="bg-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/bg-image2.jpg')"></div>
+        <div class="bg-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/bg-image4.jpg')"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">C</div>
+            <span class="text-2xl font-bold text-indigo-600 hidden sm:block">CardCraft</span>
+        </div>
+        <nav class="hidden md:flex space-x-8 font-medium">
+            <a href="#" class="hover:text-indigo-600 transition">Templates</a>
+            <a href="services.html" class="hover:text-indigo-600 transition">Services</a>
+            <a href="contact.html" class="hover:text-indigo-600 transition">Contact</a>
+        </nav>
+        <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 transition">
+            <svg id="sunIcon" class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"></path></svg>
+        </button>
+    </header>
+
+    <main class="flex-grow container mx-auto px-6 py-12">
+        <!-- Hero Section -->
+        <section class="text-center mb-20 text-white">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Design Moments That <span class="text-indigo-400">Matter</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10">
+                Create stunning, professional cards for every occasion with our intuitive designer. High quality, instant downloads.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#templates" class="btn-primary text-center">Start Designing</a>
+                <a href="services.html" class="glass px-8 py-3 rounded-lg font-semibold hover:bg-white/20 transition text-center">View Services</a>
+            </div>
+        </section>
+
+        <!-- Card Types Grid -->
+        <section id="templates" class="mb-20">
+            <h2 class="text-3xl font-bold mb-12 text-center text-white">Choose Your Occasion</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Wedding Card -->
+                <div class="group relative overflow-hidden rounded-2xl glass h-96 transition-all duration-500 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('images/bg-image2.jpg')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-2">Wedding Cards</h3>
+                        <p class="text-gray-300 mb-6">Elegant designs for your most special day.</p>
+                        <a href="wedding.html" class="inline-block bg-white text-indigo-600 px-6 py-2 rounded-full font-bold hover:bg-indigo-600 hover:text-white transition-colors">Design Now</a>
+                    </div>
+                </div>
+
+                <!-- Graduation Card -->
+                <div class="group relative overflow-hidden rounded-2xl glass h-96 transition-all duration-500 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('images/bg-image4.jpg')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-2">Graduation Cards</h3>
+                        <p class="text-gray-300 mb-6">Celebrate achievements with bold and stylish cards.</p>
+                        <a href="graduation.html" class="inline-block bg-white text-indigo-600 px-6 py-2 rounded-full font-bold hover:bg-indigo-600 hover:text-white transition-colors">Design Now</a>
+                    </div>
+                </div>
+
+                <!-- Invitation Card -->
+                <div class="group relative overflow-hidden rounded-2xl glass h-96 transition-all duration-500 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('images/bg-image5.jpg')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-2">Invitation Cards</h3>
+                        <p class="text-gray-300 mb-6">Make every event memorable starting from the invite.</p>
+                        <a href="invitation.html" class="inline-block bg-white text-indigo-600 px-6 py-2 rounded-full font-bold hover:bg-indigo-600 hover:text-white transition-colors">Design Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Preview Section -->
+        <section class="glass rounded-3xl p-8 md:p-12 text-center">
+            <h2 class="text-3xl font-bold mb-4">Try it Out</h2>
+            <p class="text-gray-600 mb-8 max-w-xl mx-auto">Type something below to see how our live engine works.</p>
+            <div class="max-w-2xl mx-auto">
+                <textarea id="cardText" rows="2" class="w-full border-2 border-gray-200 p-4 rounded-xl focus:border-indigo-600 focus:ring-0 transition text-lg" placeholder="Write a message..."></textarea>
+                <div id="quickPreview" class="mt-8 p-12 glass border-2 border-dashed border-indigo-200 rounded-2xl min-h-[200px] flex items-center justify-center text-3xl font-serif italic text-indigo-800">
+                    Your message will appear here...
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 px-6">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center font-bold">C</div>
+                    <span class="text-2xl font-bold">CardCraft</span>
+                </div>
+                <p class="text-gray-400 max-w-sm mb-8">
+                    Empowering creativity through intuitive design tools. Create, customize, and celebrate life's moments with professional quality cards.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase tracking-wider">Product</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Templates</a></li>
+                    <li><a href="services.html" class="hover:text-white transition">Pricing</a></li>
+                    <li><a href="graduation.html" class="hover:text-white transition">Graduation</a></li>
+                    <li><a href="wedding.html" class="hover:text-white transition">Wedding</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase tracking-wider">Support</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="contact.html" class="hover:text-white transition">Help Center</a></li>
+                    <li><a href="policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="services.html" class="hover:text-white transition">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto mt-16 pt-8 border-t border-gray-800 text-center text-gray-500">
+            <p>&copy; 2024 CardCraft Design Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Background Slider Logic
+        const slides = document.querySelectorAll('.bg-slide');
+        let currentSlide = 0;
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        setInterval(nextSlide, 8000);
+
+        // Quick Preview Logic
+        const textarea = document.getElementById('cardText');
+        const preview = document.getElementById('quickPreview');
+        
+        textarea.addEventListener('input', (e) => {
+            if (e.target.value) {
+                preview.textContent = e.target.value;
+                preview.classList.remove('italic', 'text-gray-400');
+            } else {
+                preview.textContent = "Your message will appear here...";
+                preview.classList.add('italic', 'text-gray-400');
+            }
+        });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</body>
+</html>
+
